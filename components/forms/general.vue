@@ -603,6 +603,26 @@
 							<label for="customRange3">Custom range (custom-range-teal)</label>
 							<input type="range" class="custom-range custom-range-teal" id="customRange3">
 						</div>
+
+						<div class="form-group">
+							<vue-date-picker
+								class="dtpicker"
+								position="left"
+								placeholder="DateTime"
+								:format="format"
+								:preview-format="format"
+								:max-date="date"
+								:model-value="formDate"
+								@update:model-value="updateDate"
+							>
+								<template #input-icon>
+									<client-only>
+										<font-awesome-icon :icon="['fas', 'calendar-days']" class="icon-menu" />
+									</client-only>
+								</template>
+							</vue-date-picker>
+							&nbsp;{{ formDate }}
+						</div>
 					</form>
 				</div>
 			</div>
@@ -614,19 +634,35 @@
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-import { faEnvelope, faCheck, faAmbulance, faDollarSign, faBell, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelope, faAmbulance, faDollarSign, faBell, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faEnvelope)
-library.add(faCheck)
-library.add(faAmbulance)
-library.add(faDollarSign)
-library.add(faBell)
-library.add(faTimesCircle)
+library.add(faEnvelope, faAmbulance, faDollarSign, faBell, faTimesCircle)
 
 export default {
 	name: 'general',
 	components: {
 		FontAwesomeIcon
-	}
+	},
+	methods: {
+		setDate(now) {
+			const dt = new Date(now).toISOString().split('T')[0];
+			const time = new Date(now).toTimeString().slice(0, 8);
+
+			return `${dt} ${time}`
+		},
+		updateDate(dtx) {
+			this.formDate = this.setDate(dtx)
+		}
+	},
+	data:() => ({
+		formDate: '',
+		date: new Date(),
+		format: (date) => {
+			const dt = date.toISOString().split('T')[0];
+			const time = date.toTimeString().slice(0, 8);
+
+			return `${dt} ${time}`;
+		},
+	})
 };
 </script>

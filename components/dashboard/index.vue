@@ -27,7 +27,7 @@
 				</div>
 				<div class="icon">
 					<client-only>
-						<font-awesome-icon class="fas" icon="fa-solid fa-chart-simple" />
+						<font-awesome-icon :icon="['fas', 'fa-chart-simple']" />
 					</client-only>
 				</div>
 				<a href="#" class="small-box-footer">
@@ -46,7 +46,7 @@
 				</div>
 				<div class="icon">
 					<client-only>
-						<font-awesome-icon class="fas" icon="fa-solid fa-user-plus" />
+						<font-awesome-icon :icon="['fas', 'fa-user-plus']" />
 					</client-only>
 				</div>
 				<a href="#" class="small-box-footer">

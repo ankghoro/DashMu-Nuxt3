@@ -23,7 +23,27 @@
 						</NuxtLink>
 					</li>
 					<li>
-						<a class="parent-link" href="#" @click="expandable($event)">
+						<a class="parent-link" href="#" @click="expandable($event, 'ui_expand')">
+							<div>
+								<client-only>
+									<font-awesome-icon :icon="['fas', 'fa-tree']" />
+								</client-only>
+							</div>
+							<div>UI</div>
+						</a>
+						<ul class="nav nav-treeview collapse" id="ui_expand">
+							<li class="nav-item">
+								<RouterLink to="/ui/buttons" class="nav-link">
+									<client-only>
+										<font-awesome-icon :icon="['fas', 'fa-check']" class="nav-icon" />
+									</client-only>
+									<p>Buttons</p>
+								</RouterLink>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a class="parent-link" href="#" @click="expandable($event, 'forms_expand')">
 							<div>
 								<client-only>
 									<font-awesome-icon :icon="['fas', 'fa-edit']" />
@@ -155,9 +175,9 @@ export default {
 				content.style.animation = "margin-out 0.5s";
 			}
 		},
-		expandable(ev) {
+		expandable(ev, id) {
 			this.expandClick = true;
-			var menu_forms = document.getElementById('forms_expand');
+			var menu_forms = document.getElementById(id);
 			if(menu_forms.classList.value.match('expandable') != null) {
 				menu_forms.classList.remove('expandable');
 				menu_forms.classList.add('collapse');

@@ -20,7 +20,7 @@ export default defineNuxtConfig({
 		{ src:  '@/plugins/fontawesome.ts', mode: 'client' },
 		{ src:  '@/plugins/chart.ts', mode: 'client' }
 	],
-	vue: {  
+	vue: {
 		compilerOptions: {
 			isCustomElement: (tag) => ['font-awesome-icon'].includes(tag),
 			isCustomElement: (tag) => ['pieChart'].includes(tag)
