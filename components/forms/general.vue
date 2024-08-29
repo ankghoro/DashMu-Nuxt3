@@ -17,6 +17,10 @@
 							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 						</div>
 						<div class="form-group">
+							<label for="exampleInputPassword1">Number</label>
+							<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Only Number" @keypress="checkNumber($event)">
+						</div>
+						<div class="form-group">
 							<label for="exampleInputFile">File input</label>
 							<div class="form-group">
 								<div class="custom-file">
@@ -663,6 +667,14 @@ export default {
 
 			return `${dt} ${time}`;
 		},
-	})
+	}),
+	setup() {
+		const { $onlyNumber } = useNuxtApp()
+		const checkNumber = (event) => {
+			return $onlyNumber(event)
+		}
+
+		return { checkNumber }
+	}
 };
 </script>
