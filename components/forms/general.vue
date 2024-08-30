@@ -10,7 +10,7 @@
 					<div class="card-body">
 						<div class="form-group">
 							<label for="exampleInputEmail1">Email address</label>
-							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" @keyup="checkEmail($event)">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputPassword1">Password</label>
@@ -669,12 +669,22 @@ export default {
 		},
 	}),
 	setup() {
-		const { $onlyNumber } = useNuxtApp()
+		const { $onlyNumber, $validateEmail } = useNuxtApp()
 		const checkNumber = (event) => {
 			return $onlyNumber(event)
 		}
+		const checkEmail = (event) => {
+			const value = event.target.value
+			if($validateEmail(value) == true) {
+				event.target.classList.remove('is-invalid')
+				event.target.classList.add('is-valid')
+			} else if($validateEmail(value) == false) {
+				event.target.classList.remove('is-valid')
+				event.target.classList.add('is-invalid')
+			}
+		}
 
-		return { checkNumber }
+		return { checkNumber, checkEmail }
 	}
 };
 </script>
