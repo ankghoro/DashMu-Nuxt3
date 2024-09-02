@@ -282,7 +282,9 @@
 
 							<div class="input-group-append">
 								<button type="submit" class="btn btn-default">
-									<font-awesome-icon class="fas" icon="fa-search" />
+									<client-only>
+										<font-awesome-icon :icon="['fas', 'fa-search']" />
+									</client-only>
 								</button>
 							</div>
 						</div>
@@ -349,7 +351,9 @@
 
 							<div class="input-group-append">
 								<button type="submit" class="btn btn-default">
-									<font-awesome-icon class="fas" icon="fa-search" />
+									<client-only>
+										<font-awesome-icon :icon="['fas', 'fa-search']" />
+									</client-only>
 								</button>
 							</div>
 						</div>

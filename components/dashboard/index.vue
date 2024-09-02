@@ -33,7 +33,7 @@
 				<a href="#" class="small-box-footer">
 					More info
 					<client-only>
-						<font-awesome-icon class="fas" icon="fa-solid fa-arrow-circle-right" style="height:16px" />
+						<font-awesome-icon :icon="['fas', 'fa-arrow-circle-right']" style="height:16px" />
 					</client-only>
 				</a>
 			</div>
@@ -52,7 +52,7 @@
 				<a href="#" class="small-box-footer">
 					More info
 					<client-only>
-						<font-awesome-icon class="fas" icon="fa-solid fa-arrow-circle-right" style="height:16px" />
+						<font-awesome-icon :icon="['fas', 'fa-arrow-circle-right']" style="height:16px" />
 					</client-only>
 				</a>
 			</div>
@@ -71,7 +71,7 @@
 				<a href="#" class="small-box-footer">
 					More info
 					<client-only>
-						<font-awesome-icon class="fas" icon="fa-solid fa-arrow-circle-right" style="height:16px" />
+						<font-awesome-icon :icon="['fas', 'fa-arrow-circle-right']" style="height:16px" />
 					</client-only>
 				</a>
 			</div>

@@ -17,8 +17,8 @@
 							<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
 						</div>
 						<div class="form-group">
-							<label for="exampleInputPassword1">Number</label>
-							<input type="text" class="form-control" id="exampleInputPassword1" placeholder="Only Number" @keypress="checkNumber($event)">
+							<label for="exampleInputNumber">Number</label>
+							<input type="text" class="form-control" id="exampleInputNumber" placeholder="Only Number" @keypress="checkNumber($event)">
 						</div>
 						<div class="form-group">
 							<label for="exampleInputFile">File input</label>
@@ -635,7 +635,7 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faEnvelope, faAmbulance, faDollarSign, faBell, faTimesCircle } from '@fortawesome/free-solid-svg-icons'

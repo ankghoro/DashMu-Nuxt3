@@ -13,7 +13,7 @@
 			<div class="side-list" id="side-list">
 				<ul>
 					<li>
-						<NuxtLink to="/">
+						<NuxtLink to="/" @click="close_sidebar">
 							<div>
 								<client-only>
 									<font-awesome-icon :icon="['fas', 'fa-gauge']" />
@@ -33,7 +33,7 @@
 						</a>
 						<ul class="nav nav-treeview collapse" id="ui_expand">
 							<li class="nav-item">
-								<RouterLink to="/ui/buttons" class="nav-link">
+								<RouterLink to="/ui/buttons" class="nav-link" @click="close_sidebar">
 									<client-only>
 										<font-awesome-icon :icon="['fas', 'fa-check']" class="nav-icon" />
 									</client-only>
@@ -53,7 +53,7 @@
 						</a>
 						<ul class="nav nav-treeview collapse" id="forms_expand">
 							<li class="nav-item">
-								<RouterLink to="/forms/general" class="nav-link">
+								<RouterLink to="/forms/general" class="nav-link" @click="close_sidebar">
 									<client-only>
 										<font-awesome-icon :icon="['fas', 'fa-check']" class="nav-icon" />
 									</client-only>
@@ -61,7 +61,7 @@
 								</RouterLink>
 							</li>
 							<li class="nav-item">
-								<RouterLink to="/forms/advanced" class="nav-link">
+								<RouterLink to="/forms/advanced" class="nav-link" @click="close_sidebar">
 									<client-only>
 										<font-awesome-icon :icon="['fas', 'fa-check']" class="nav-icon" />
 									</client-only>
@@ -69,7 +69,7 @@
 								</RouterLink>
 							</li>
 							<li class="nav-item">
-								<RouterLink to="/forms/editors" class="nav-link">
+								<RouterLink to="/forms/editors" class="nav-link" @click="close_sidebar">
 									<client-only>
 										<font-awesome-icon :icon="['fas', 'fa-check']" class="nav-icon" />
 									</client-only>
@@ -77,7 +77,7 @@
 								</RouterLink>
 							</li>
 							<li class="nav-item">
-								<RouterLink to="/forms/validation" class="nav-link">
+								<RouterLink to="/forms/validation" class="nav-link" @click="close_sidebar">
 									<client-only>
 										<font-awesome-icon :icon="['fas', 'fa-check']" class="nav-icon" />
 									</client-only>
@@ -87,7 +87,7 @@
 						</ul>
 					</li>
 					<li>
-						<RouterLink to="/tables/simple">
+						<RouterLink to="/tables/simple" @click="close_sidebar">
 							<div>
 								<client-only>
 									<font-awesome-icon :icon="['fas', 'fa-table']" />
@@ -97,7 +97,7 @@
 						</RouterLink>
 					</li>
 					<li>
-						<RouterLink to="/about">
+						<RouterLink to="/about" @click="close_sidebar">
 							<div>
 								<client-only>
 									<font-awesome-icon :icon="['fas', 'fa-info']" />
@@ -115,7 +115,7 @@
 		<div class="main-header">
 			<ul class="navbar">
 				<li>
-					<a class="nav-link" href="#" @click="menus">
+					<a class="nav-link nav-bars" href="#" @click="menus">
 						<client-only>
 							<font-awesome-icon :icon="['fas', 'fa-bars']" style="height:24px" />
 						</client-only>
@@ -153,26 +153,52 @@ export default {
 			}
 		},
 		resizeContainer() {
-			const heightScreen = window.innerHeight;
+			const widthScreen = window.innerWidth
+			const heightScreen = window.innerHeight
 			const fixed = heightScreen - 100;
+			const sidebar = document.querySelector('.sidebar')
 			document.querySelector('.main-body').style.minHeight = fixed + "px";
-		},
-		menus() {
-			var sidebar = document.querySelector('.sidebar');
-			var content = document.querySelector('.main');
-			var footer = document.querySelector('.footer');
-			if(sidebar.style.left == '-250px') {
+
+			if(widthScreen > 992) {
 				sidebar.style.left = '0';
-				sidebar.style.boxShadow = '0 14px 28px rgba(0,0,0,.2), 0 10px 10px rgba(0,0,0,.2)';
-				sidebar.style.animation = "slide-in 0.5s";
-				content.style.marginLeft = '250px';
-				content.style.animation = "margin-in 0.5s";
 			} else {
 				sidebar.style.left = '-250px';
-				sidebar.style.boxShadow = 'unset';
-				sidebar.style.animation = "slide-out 0.5s";
-				content.style.marginLeft = '0';
-				content.style.animation = "margin-out 0.5s";
+			}
+		},
+		menus() {
+			const widthScreen = window.innerWidth
+			const sidebar = document.querySelector('.sidebar')
+			const content = document.querySelector('.main')
+			const footer = document.querySelector('.footer')
+			const bars = document.querySelector('.nav-bars')
+			if(widthScreen > 992) {
+				if(sidebar.style.left == '-250px' || sidebar.style.left == '') {
+					sidebar.style.left = '0';
+					sidebar.style.boxShadow = '0 14px 28px rgba(0,0,0,.2), 0 10px 10px rgba(0,0,0,.2)';
+					sidebar.style.animation = "slide-in 0.5s";
+					content.style.marginLeft = '250px';
+					content.style.animation = "margin-in 0.5s";
+				} else {
+					sidebar.style.left = '-250px';
+					sidebar.style.boxShadow = 'unset';
+					sidebar.style.animation = "slide-out 0.5s";
+					content.style.marginLeft = '0';
+					content.style.animation = "margin-out 0.5s";
+				}
+			} else {
+				if(sidebar.style.left == '-250px' || sidebar.style.left == '') {
+					sidebar.style.left = '0';
+					sidebar.style.boxShadow = '0 14px 28px rgba(0,0,0,.2), 0 10px 10px rgba(0,0,0,.2)';
+					sidebar.style.animation = "slide-in 0.5s";
+					bars.style.left = '250px';
+					bars.style.animation = "left-in 0.5s";
+				} else {
+					sidebar.style.left = '-250px';
+					sidebar.style.boxShadow = 'unset';
+					sidebar.style.animation = "slide-out 0.5s";
+					bars.style.left = '0';
+					bars.style.animation = "left-out 0.5s";
+				}
 			}
 		},
 		expandable(ev, id) {
@@ -184,6 +210,26 @@ export default {
 			} else {
 				menu_forms.classList.remove('collapse');
 				menu_forms.classList.add('expandable');
+			}
+		},
+		close_sidebar() {
+			const widthScreen = window.innerWidth
+			const sidebar = document.querySelector('.sidebar')
+			const bars = document.querySelector('.nav-bars')
+			if(widthScreen < 992) {
+				if(sidebar.style.left == '-250px' || sidebar.style.left == '') {
+					sidebar.style.left = '0';
+					sidebar.style.boxShadow = '0 14px 28px rgba(0,0,0,.2), 0 10px 10px rgba(0,0,0,.2)';
+					sidebar.style.animation = "slide-in 0.5s";
+					bars.style.left = '250px';
+					bars.style.animation = "left-in 0.5s";
+				} else {
+					sidebar.style.left = '-250px';
+					sidebar.style.boxShadow = 'unset';
+					sidebar.style.animation = "slide-out 0.5s";
+					bars.style.left = '0';
+					bars.style.animation = "left-out 0.5s";
+				}
 			}
 		}
 	},

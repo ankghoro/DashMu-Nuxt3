@@ -33,7 +33,7 @@ a {
 	position: fixed;
 	transition: all 0.5s ease-in-out;
 	width: 250px;
-	z-index: 5;
+	z-index: 15;
 }
 
 .sidebar > .wrapper {
@@ -54,6 +54,11 @@ a {
 	margin-left: 250px;
 	transition: all 0.5s ease-in-out;
 	z-index: 1;
+}
+
+.nav-bars {
+	left: 0;
+	position: relative;
 }
 
 .side-list {

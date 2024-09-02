@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+	compatibilityDate: '2024-06-01',
 	devtools: { enabled: true },
 	app: {
 		head: {
@@ -20,9 +21,17 @@ export default defineNuxtConfig({
 		{ src:  '@/plugins/fontawesome.ts', mode: 'client' },
 		{ src:  '@/plugins/chart.ts', mode: 'client' }
 	],
+	build: {
+		transpile: [
+			'@fortawesome/vue-fontawesome',
+			'@fortawesome/fontawesome-svg-core',
+			'@fortawesome/free-regular-svg-icons',
+			'@fortawesome/free-solid-svg-icons',
+			'@vuepic/vue-datepicker'
+		]
+	},
 	vue: {
 		compilerOptions: {
-			isCustomElement: (tag) => ['font-awesome-icon'].includes(tag),
 			isCustomElement: (tag) => ['pieChart'].includes(tag)
 		},
 	},
