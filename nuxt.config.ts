@@ -18,8 +18,7 @@ export default defineNuxtConfig({
 		'@/assets/styles/tiptap.css'
 	],
 	plugins: [
-		{ src:  '@/plugins/fontawesome.ts', mode: 'client' },
-		{ src:  '@/plugins/chart.ts', mode: 'client' }
+		{ src:  '@/plugins/chart.js', mode: 'client' }
 	],
 	build: {
 		transpile: [
@@ -32,10 +31,10 @@ export default defineNuxtConfig({
 	},
 	vue: {
 		compilerOptions: {
-			isCustomElement: (tag) => ['pieChart'].includes(tag)
+			//
 		},
 	},
 	build: {
-		transpile: ['chart.js']
+		//transpile: ['chart.js']
 	}
 })

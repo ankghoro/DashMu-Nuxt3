@@ -1,10 +1,18 @@
 export default defineNuxtPlugin(() => {
 	return {
 		provide: {
-			onlyNumber: (msg: any) => {
+			onlyNumber: (msg: any, total = 0) => {
 				var text = msg.key
 				if(text.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1') != '') {
-					return text
+					if(total == 0) {
+						return text
+					} else {
+						if(msg.target.value.length < total) {
+							return text
+						} else {
+							msg.preventDefault()
+						}
+					}
 				} else {
 					msg.preventDefault()
 				}

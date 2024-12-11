@@ -1149,6 +1149,19 @@ button:not(:disabled) {
 	border-bottom-left-radius: 0.2rem;
 }
 
+.tab-content > .tab-pane {
+	display: none;
+}
+
+.tab-content > .active {
+	display: block;
+}
+
+.chart {
+	overflow: hidden;
+	position: relative;
+}
+
 .progress-xs {
 	height: 7px;
 }
