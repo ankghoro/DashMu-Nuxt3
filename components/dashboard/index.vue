@@ -252,7 +252,10 @@ export default {
 						label: 'My Doughnut Chart',  // Label for the dataset
 						data: [12, 19, 3, 7],  // Values for each slice
 						backgroundColor: ['#FF6384', '#36A2EB', '#FFCD56', '#4BC0C0'],  // Slice colors
-						hoverOffset: 4
+						hoverOffset: 4,
+						options: {
+							cutout: '70%' // Makes the doughnut chart thicker
+						}
 					}
 				]
 			};
@@ -269,6 +272,7 @@ export default {
 		const doughData = ref(null);
 		const options_1 = reactive({
 			responsive: true,
+			maintainAspectRatio: false,
 			scales: {
 				x: {
 					beginAtZero: true
@@ -280,6 +284,7 @@ export default {
 		});
 		const options_2 = reactive({
 			responsive: true,
+			maintainAspectRatio: false,
 			plugins: {
 				legend: {
 					position: 'top'
