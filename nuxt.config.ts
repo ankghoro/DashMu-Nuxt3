@@ -18,7 +18,7 @@ export default defineNuxtConfig({
 		'@/assets/styles/tiptap.css'
 	],
 	plugins: [
-		{ src:  '@/plugins/chart.ts', mode: 'client' }
+		//
 	],
 	build: {
 		transpile: [

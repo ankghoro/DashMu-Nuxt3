@@ -104,14 +104,12 @@
 						<!-- Morris chart - Sales -->
 						<div class="chart tab-pane active" ref="bar" style="position: relative; height: 300px;">
 							<client-only>
-								<BarChart :data="barData" :options="options_1" v-if="barData && barData.labels"  />
-								<div v-else>Loading chart data...</div>
+								<BarChart />
 							</client-only>
 						</div>
 						<div class="chart tab-pane" ref="pie" style="position: relative; height: 300px;">
 							<client-only>
-								<PieChart :data="pieData" :options="options_2" v-if="pieData && pieData.labels" />
-								<div v-else>Loading chart data...</div>
+								<PieChart />
 							</client-only>
 						</div>
 					</div>
@@ -143,14 +141,12 @@
 					<div class="tab-content p-0">
 						<div class="chart tab-pane active" ref="line" style="position: relative; height: 300px;">
 							<client-only>
-								<LineChart :data="lineData" :options="options_1" v-if="lineData && lineData.labels" />
-								<div v-else>Loading chart data...</div>
+								<LineChart />
 							</client-only>
 						</div>
 						<div class="chart tab-pane" ref="doughnut" style="position: relative; height: 300px;">
 							<client-only>
-								<DoughnutChart :data="doughData" :options="options_2" v-if="doughData && doughData.labels" />
-								<div v-else>Loading chart data...</div>
+								<DoughnutChart />
 							</client-only>
 						</div>
 					</div>
@@ -161,16 +157,19 @@
 </template>
 
 <script>
-import { Line, Bar, Pie, Doughnut } from 'vue-chartjs'
+import BarChart from '@/components/BarChart.vue';
+import LineChart from '@/components/LineChart.vue';
+import PieChart from '@/components/PieChart.vue';
+import DoughnutChart from '@/components/DoughnutChart.vue';
 import { reactive } from 'vue'
 
 export default {
 	name: 'dashboardComponents',
 	components: {
-		LineChart: Line,
-		BarChart: Bar,
-		PieChart: Pie,
-		DoughnutChart: Doughnut
+		LineChart,
+		BarChart,
+		PieChart,
+		DoughnutChart
 	},
 	methods: {
 		setActived(event, param) {
@@ -202,109 +201,16 @@ export default {
 					this.$refs.doughnut.classList.add('active');
 					break;
 			}
-		},
-		loadLine() {
-			this.lineData = {
-				labels: ['January', 'February', 'March', 'April'],
-				datasets: [
-					{
-						label: 'Sample Data',
-						data: [40, 20, 12, 39],
-						fill: false,
-						borderColor: '#42A5F5',
-						tension: 0.1
-					}
-				]
-			};
-		},
-		loadBar() {
-			this.barData = {
-				labels: ['January', 'February', 'March', 'April'],  // x-axis labels
-				datasets: [
-					{
-						label: 'Monthly Sales',  // Label for the dataset
-						data: [40, 20, 12, 39],  // Data for each label (y-values)
-						backgroundColor: 'rgba(75, 192, 192, 0.2)',  // Bar color
-						borderColor: 'rgba(75, 192, 192, 1)',  // Border color
-						borderWidth: 1
-					}
-				]
-			};
-		},
-		loadPie() {
-			this.pieData = {
-				labels: ['Red', 'Blue', 'Yellow', 'Green'],
-				datasets: [
-					{
-						label: 'My Pie Chart',
-						data: [12, 19, 3, 7],
-						backgroundColor: ['#FF6384', '#36A2EB', '#FFCD56', '#4BC0C0'],
-						hoverOffset: 4
-					}
-				]
-			};
-		},
-		loadDough() {
-			this.doughData = {
-				labels: ['Red', 'Blue', 'Yellow', 'Green'],  // Doughnut slice labels
-				datasets: [
-					{
-						label: 'My Doughnut Chart',  // Label for the dataset
-						data: [12, 19, 3, 7],  // Values for each slice
-						backgroundColor: ['#FF6384', '#36A2EB', '#FFCD56', '#4BC0C0'],  // Slice colors
-						hoverOffset: 4,
-						options: {
-							cutout: '70%' // Makes the doughnut chart thicker
-						}
-					}
-				]
-			};
 		}
 	},
 	data: () => ({
-		lineData: null,
-		barData: null,
-		pieData: null,
-		doughData: null
+		//
 	}),
 	setup() {
-		// Define chart data and options using Vue's Composition API
-		const doughData = ref(null);
-		const options_1 = reactive({
-			responsive: true,
-			maintainAspectRatio: false,
-			scales: {
-				x: {
-					beginAtZero: true
-				},
-				y: {
-					beginAtZero: true
-				}
-			}
-		});
-		const options_2 = reactive({
-			responsive: true,
-			maintainAspectRatio: false,
-			plugins: {
-				legend: {
-					position: 'top'
-				},
-				tooltip: {
-					enabled: true
-				}
-			}
-		});
-
-		return {
-			options_1,
-			options_2
-		};
+		//
 	},
 	mounted() {
-		this.loadLine()
-		this.loadBar()
-		this.loadPie()
-		this.loadDough()
+		//
 	}
 };
 </script>
