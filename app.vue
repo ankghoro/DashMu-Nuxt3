@@ -97,6 +97,16 @@
 						</RouterLink>
 					</li>
 					<li>
+						<RouterLink to="/schedule" @click="close_sidebar">
+							<div>
+								<client-only>
+									<font-awesome-icon :icon="['fas', 'fa-clock']" />
+								</client-only>
+							</div>
+							<div>Schedule</div>
+						</RouterLink>
+					</li>
+					<li>
 						<RouterLink to="/about" @click="close_sidebar">
 							<div>
 								<client-only>
